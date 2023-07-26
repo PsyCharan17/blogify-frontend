@@ -19,6 +19,7 @@ const WordCloud = (props) => {
           marginBottom: "10px",
         }}
       ></hr>
+
       <img
         src={`data:image/png;base64,${props.word}`}
         style={{

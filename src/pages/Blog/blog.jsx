@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import Odometer from "./Sentiment/Odometer";
 import Sentiment from "./Sentiment/Sentiment";
 import axios from "axios";
+import { BASE_URL } from "../../helper";
 
 const Blog = () => {
   const { id } = useParams();
@@ -16,23 +17,21 @@ const Blog = () => {
   const gettingBlogs = async () => {
     try {
       // console.log("inside gettingblogs ");
-      await axios
-        .post("http://localhost:5000/api/upload/getBlogs", {})
-        .then((res) => {
-          // res.data.map((blog) => {
-          //   blog.id = setIdCounter(idCounter + 1);
-          //   // console.log(blog.id);
-          // });
-          console.log("inside gettingblogs ");
-          console.log(res.data);
-          console.log("inside gettingblogs");
-          const recentBlogs = res.data;
-          recentBlogs.map((blog) => {
-            if (blog.title === id) {
-              setBlog(blog);
-            }
-          });
+      await axios.post(`${BASE_URL}/api/upload/getBlogs`, {}).then((res) => {
+        // res.data.map((blog) => {
+        //   blog.id = setIdCounter(idCounter + 1);
+        //   // console.log(blog.id);
+        // });
+        console.log("before gettingblogs ");
+        console.log(res.data);
+        console.log("inside gettingblogs");
+        const recentBlogs = res.data;
+        recentBlogs.map((blog) => {
+          if (blog.title === id) {
+            setBlog(blog);
+          }
         });
+      });
       console.log(blog);
     } catch (error) {
       console.log(error.message);

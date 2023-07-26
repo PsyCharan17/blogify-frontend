@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import "./InputForm.css";
 import axios from "axios";
+import { BASE_URL } from "../../../../helper";
+import { PYTHON_URL } from "../../../../helper";
+
 // import uploadBlog from "../../../../backend/controllers/uploadController";
 
 const InputForm = () => {
@@ -30,15 +33,16 @@ const InputForm = () => {
       };
 
       setLoading(true);
+      console.log("Before mongodb function");
       const { data } = await axios.post(
         // putting
-        "http://localhost:5000/api/upload",
+        `https://blogify-backend-1rfw.onrender.com/api/upload/`,
         { title, blogContent },
         config
       );
-
+      console.log("after mongodb function");
       const doneProcessing = await axios.post(
-        "http://127.0.0.1:8000/blog",
+        `https://blogify2-1-a1201495.deta.app/blog`,
         { title: title },
         config
       );

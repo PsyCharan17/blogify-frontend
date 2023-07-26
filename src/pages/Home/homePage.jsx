@@ -5,6 +5,7 @@ import Header from "../../components/Home/Header/Header";
 import HeroSection from "../../components/Home/hero-section/HeroSection";
 import SearchBar from "../../components/Home/SearchBar/searchBar";
 import { blogList } from "../../config/data";
+import { BASE_URL } from "../../helper";
 
 import axios from "axios";
 const Home = () => {
@@ -25,20 +26,18 @@ const Home = () => {
   const gettingBlogs = async () => {
     try {
       // console.log("inside gettingblogs ");
-      await axios
-        .post("http://localhost:5000/api/upload/getBlogs", {})
-        .then((res) => {
-          // res.data.map((blog) => {
-          //   blog.id = setIdCounter(idCounter + 1);
-          //   // console.log(blog.id);
-          // });
-          console.log("inside gettingblogs ");
-          console.log(res.data);
-          console.log("inside gettingblogs");
-          setLatestPosts(res.data);
+      await axios.post(`${BASE_URL}/api/upload/getBlogs`, {}).then((res) => {
+        // res.data.map((blog) => {
+        //   blog.id = setIdCounter(idCounter + 1);
+        //   // console.log(blog.id);
+        // });
+        console.log("at homePage.jsx before ");
+        console.log(res.data);
+        console.log("at homePage.jsx after ");
+        setLatestPosts(res.data);
 
-          // console.log(latestPosts);
-        });
+        // console.log(latestPosts);
+      });
     } catch (error) {
       console.log(error.message);
     }

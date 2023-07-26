@@ -7,7 +7,7 @@ const Sentiment = (props) => {
   return (
     <div>
       <Odometer value={props.value} />
-      <WordCloud word={props.word} />
+      {/* <WordCloud word={props.word} /> */}
       <Tags tags={props.tags} />
     </div>
   );
